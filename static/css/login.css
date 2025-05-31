@@ -32,6 +32,7 @@ body {
 .carrusel-imagenes {
   width: 100%;
   height: 100%;
+  position: relative; /* AÑADIDO: Necesario para posicionar las imágenes absolutas */
 }
 
 .carrusel-imagenes img {
@@ -47,7 +48,6 @@ body {
   image-rendering: crisp-edges; /* Firefox */
   image-rendering: pixelated; /* Edge */
   filter: blur(0.5px) contrast(1.1); /* Suaviza y aumenta contraste */
-
 }
 
 .carrusel-imagenes img.active {
@@ -79,18 +79,30 @@ body {
   text-align: center;
   backdrop-filter: blur(8px); /* Efecto vidrio esmerilado */
   z-index: 2; /* Encima del carrusel */
+  position: relative; /* AÑADIDO: Necesario para que z-index funcione */
 }
 
 .login-container h1 {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem; /* MODIFICADO: Reducido para hacer espacio al subtitle */
   color: #333;
   font-size: 1.8rem;
+}
+
+/* AÑADIDO: Estilo para el subtitle */
+.subtitle {
+  margin-bottom: 1.5rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* AÑADIDO: Estilo para input-group */
+.input-group {
+  margin: 0.75rem 0;
 }
 
 .login-container input {
   width: 100%;
   padding: 0.9rem;
-  margin: 0.75rem 0;
   border: 1px solid #ddd;
   border-radius: 6px;
   font-size: 1rem;
@@ -123,6 +135,13 @@ body {
 
 .login-container button:active {
   transform: translateY(0); /* Vuelve a posición normal al hacer clic */
+}
+
+/* AÑADIDO: Estilo para mensajes de error */
+.error-message {
+  color: red;
+  margin-top: 1rem;
+  font-size: 0.9rem;
 }
 
 /* ============================================= */

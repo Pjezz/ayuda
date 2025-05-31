@@ -40,6 +40,27 @@ header h1 {
   font-size: 1.1rem;
 }
 
+/* ===== DEBUG INFO ===== */
+.debug-info {
+  background-color: #e7f3ff;
+  border: 1px solid #b3d9ff;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  font-family: monospace;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.debug-toggle {
+  transition: all 0.3s ease;
+}
+
+.debug-toggle:hover {
+  background-color: #5a6268 !important;
+  transform: translateY(-1px);
+}
+
 /* ===== LOADING ===== */
 .loading {
   text-align: center;
@@ -72,8 +93,22 @@ header h1 {
   padding: 20px;
   border-radius: 12px;
   margin: 20px 0;
-  text-align: center;
+  text-align: left;
   border: 1px solid #f5c6cb;
+}
+
+.error-message h3 {
+  margin-bottom: 1rem;
+  color: #721c24;
+}
+
+.error-message ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.error-message li {
+  margin: 0.5rem 0;
 }
 
 .error-container {
@@ -247,7 +282,7 @@ header h1 {
   margin-top: 2rem;
 }
 
-.restart-btn, .print-btn, .retry-btn {
+.restart-btn, .print-btn, .retry-btn, .debug-btn {
   padding: 0.8rem 2rem;
   border: none;
   border-radius: 8px;
@@ -291,6 +326,17 @@ header h1 {
   box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
 }
 
+.debug-btn {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.debug-btn:hover {
+  background-color: #138496;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(23, 162, 184, 0.3);
+}
+
 /* ===== NO RECOMMENDATIONS ===== */
 .no-recommendations {
   text-align: center;
@@ -325,7 +371,7 @@ header h1 {
     gap: 0.8rem;
   }
   
-  .restart-btn, .print-btn, .retry-btn {
+  .restart-btn, .print-btn, .retry-btn, .debug-btn {
     width: 100%;
     max-width: 250px;
   }
@@ -376,3 +422,23 @@ header h1 {
 .car-card:nth-child(2) { animation-delay: 0.1s; }
 .car-card:nth-child(3) { animation-delay: 0.2s; }
 .car-card:nth-child(4) { animation-delay: 0.3s; }
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  .debug-info,
+  .debug-toggle,
+  .action-buttons {
+    display: none !important;
+  }
+  
+  .container {
+    box-shadow: none;
+    border-radius: 0;
+  }
+  
+  .car-card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+}

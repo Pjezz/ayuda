@@ -43,6 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const username = document.getElementById('username').value;
       const password = document.getElementById('password').value;
+      const errorMessage = document.getElementById('error-message');
+
+      // Limpiar mensaje de error anterior
+      errorMessage.style.display = 'none';
 
       if (username && password) {
         try {
@@ -62,14 +66,17 @@ document.addEventListener('DOMContentLoaded', () => {
           if (data.success) {
             window.location.href = data.redirect;
           } else {
-            alert(data.message || 'Error en el login');
+            errorMessage.textContent = data.message || 'Error en el login';
+            errorMessage.style.display = 'block';
           }
         } catch (error) {
           console.error('Error:', error);
-          alert('Error de conexión');
+          errorMessage.textContent = 'Error de conexión';
+          errorMessage.style.display = 'block';
         }
       } else {
-        alert('Por favor, ingresa usuario y contraseña');
+        errorMessage.textContent = 'Por favor, ingresa usuario y contraseña';
+        errorMessage.style.display = 'block';
       }
     });
   }
