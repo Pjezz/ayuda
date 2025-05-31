@@ -43,5 +43,5 @@ def api_recommendations():
     result = get_recommendations(brand, budget, transmission, types)
     return jsonify(result)
 
-if __name__ == "_main_":
+if __name__ == "__main__":
     app.run(debug=True)
