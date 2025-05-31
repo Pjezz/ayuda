@@ -497,6 +497,276 @@
       opacity: 0;
     }
 
+    /* ===== MODAL DE DETALLES ===== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-container {
+      background: white;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 900px;
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: scale(0.7);
+      transition: transform 0.3s ease;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-overlay.active .modal-container {
+      transform: scale(1);
+    }
+
+    .modal-header {
+      background: linear-gradient(135deg, #6200ea, #3700b3);
+      color: white;
+      padding: 1.5rem;
+      border-radius: 15px 15px 0 0;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .modal-car-title {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-car-subtitle {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    .modal-body {
+      padding: 2rem;
+    }
+
+    .modal-image-section {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .modal-main-image {
+      width: 100%;
+      max-width: 500px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 12px;
+      background: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 1rem;
+    }
+
+    .modal-info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .modal-info-section {
+      background: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 12px;
+    }
+
+    .modal-info-section h3 {
+      color: #333;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      border-bottom: 2px solid #6200ea;
+      padding-bottom: 0.5rem;
+    }
+
+    .modal-specs-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .modal-specs-table tr {
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .modal-specs-table td {
+      padding: 0.8rem 0;
+      vertical-align: top;
+    }
+
+    .modal-specs-table td:first-child {
+      font-weight: 600;
+      color: #555;
+      width: 50%;
+    }
+
+    .modal-specs-table td:last-child {
+      color: #333;
+    }
+
+    .modal-features-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+
+    .modal-feature-item {
+      display: flex;
+      align-items: center;
+      padding: 0.5rem;
+      background: white;
+      border-radius: 6px;
+      border-left: 3px solid #6200ea;
+    }
+
+    .modal-feature-icon {
+      color: #27ae60;
+      margin-right: 0.5rem;
+      font-weight: bold;
+    }
+
+    .modal-price-section {
+      background: linear-gradient(135deg, #27ae60, #2ecc71);
+      color: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+
+    .modal-price-main {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-price-subtitle {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .modal-action-btn {
+      flex: 1;
+      min-width: 140px;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .modal-btn-primary {
+      background: #6200ea;
+      color: white;
+    }
+
+    .modal-btn-primary:hover {
+      background: #3700b3;
+      transform: translateY(-2px);
+    }
+
+    .modal-btn-secondary {
+      background: #e0e0e0;
+      color: #333;
+    }
+
+    .modal-btn-secondary:hover {
+      background: #d0d0d0;
+    }
+
+    .details-btn {
+      background: #17a2b8;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 1rem;
+      width: 100%;
+    }
+
+    .details-btn:hover {
+      background: #138496;
+      transform: translateY(-1px);
+    }
+
+    /* Responsive para modal */
+    @media (max-width: 768px) {
+      .modal-container {
+        width: 95%;
+        margin: 1rem;
+      }
+
+      .modal-info-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .modal-body {
+        padding: 1rem;
+      }
+
+      .modal-car-title {
+        font-size: 1.4rem;
+      }
+
+      .modal-actions {
+        flex-direction: column;
+      }
+
+      .modal-action-btn {
+        min-width: auto;
+      }
+    }
+
     /* ===== PRINT STYLES ===== */
     @media print {
       .debug-info,
@@ -557,6 +827,20 @@
       <button onclick="window.print()" class="print-btn">🖨️ Imprimir</button>
       <button onclick="loadRecommendations()" class="retry-btn">🔁 Reintentar</button>
     </div>
+
+    <!-- Modal de detalles del auto -->
+    <div class="modal-overlay" id="carDetailModal">
+      <div class="modal-container">
+        <div class="modal-header">
+          <button class="modal-close" onclick="closeCarDetailsModal()">&times;</button>
+          <div class="modal-car-title" id="modalCarTitle">Detalles del Vehículo</div>
+          <div class="modal-car-subtitle" id="modalCarSubtitle">Información completa</div>
+        </div>
+        <div class="modal-body" id="modalBody">
+          <!-- Contenido se carga dinámicamente -->
+        </div>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -613,6 +897,9 @@
             <div class="detail"><strong>Año:</strong> ${car.year || 'No especificado'}</div>
           </div>
           ${featuresHtml}
+          <button onclick="openCarDetailsModal(${JSON.stringify(car).replace(/"/g, '&quot;')})" class="details-btn">
+            🔍 Ver detalles completos
+          </button>
         </div>
       `;
       
@@ -859,6 +1146,212 @@
     window.loadRecommendations = loadRecommendations;
     window.restartProcess = restartProcess;
     window.testWithMockData = testWithMockData;
+    window.openCarDetailsModal = openCarDetailsModal;
+    window.closeCarDetailsModal = closeCarDetailsModal;
+
+    // ===== FUNCIONES DEL MODAL DE DETALLES =====
+
+    function openCarDetailsModal(carData) {
+      const modal = document.getElementById('carDetailModal');
+      const modalBody = document.getElementById('modalBody');
+      const title = document.getElementById('modalCarTitle');
+      const subtitle = document.getElementById('modalCarSubtitle');
+
+      // Mostrar modal
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+
+      // Actualizar título
+      title.textContent = carData.name || 'Información del Vehículo';
+      subtitle.textContent = `${carData.brand} • ${carData.year} • ${formatPrice(carData.price)}`;
+
+      // Generar contenido
+      modalBody.innerHTML = generateDetailedModalContent(carData);
+    }
+
+    function closeCarDetailsModal() {
+      const modal = document.getElementById('carDetailModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    function generateDetailedModalContent(car) {
+      const specs = generateCarSpecs(car);
+      const financing = calculateFinancing(car.price);
+
+      return `
+        <!-- Imagen principal -->
+        <div class="modal-image-section">
+          <div class="modal-main-image">
+            📷 Imagen de ${car.name}
+          </div>
+        </div>
+
+        <!-- Grid de información -->
+        <div class="modal-info-grid">
+          <!-- Especificaciones -->
+          <div class="modal-info-section">
+            <h3>📋 Especificaciones Técnicas</h3>
+            <table class="modal-specs-table">
+              ${specs.map(spec => `
+                <tr>
+                  <td>${spec.label}:</td>
+                  <td>${spec.value}</td>
+                </tr>
+              `).join('')}
+            </table>
+          </div>
+
+          <!-- Características -->
+          <div class="modal-info-section">
+            <h3>✨ Características Incluidas</h3>
+            <div class="modal-features-grid">
+              ${(car.features || ['Aire acondicionado', 'Radio AM/FM', 'Bluetooth']).map(feature => `
+                <div class="modal-feature-item">
+                  <span class="modal-feature-icon">✓</span>
+                  <span>${feature}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+
+        <!-- Sección de precio -->
+        <div class="modal-price-section">
+          <div class="modal-price-main">${formatPrice(car.price)}</div>
+          <div class="modal-price-subtitle">Precio sugerido al público</div>
+          <div style="margin-top: 1rem; font-size: 0.9rem;">
+            <strong>Financiamiento estimado:</strong> ${financing.monthly}/mes a ${financing.term} meses
+          </div>
+        </div>
+
+        <!-- Acciones -->
+        <div class="modal-actions">
+          <button class="modal-action-btn modal-btn-primary" onclick="requestQuote('${car.id}')">
+            💰 Solicitar Cotización
+          </button>
+          <button class="modal-action-btn modal-btn-secondary" onclick="addToFavorites('${car.id}')">
+            ❤️ Favoritos
+          </button>
+          <button class="modal-action-btn modal-btn-secondary" onclick="shareVehicle('${car.id}')">
+            🔗 Compartir
+          </button>
+        </div>
+      `;
+    }
+
+    function generateCarSpecs(car) {
+      return [
+        { label: 'Marca', value: car.brand || 'N/A' },
+        { label: 'Modelo', value: car.model || 'N/A' },
+        { label: 'Año', value: car.year || 'N/A' },
+        { label: 'Tipo de Vehículo', value: car.type || 'N/A' },
+        { label: 'Combustible', value: car.fuel || 'N/A' },
+        { label: 'Transmisión', value: car.transmission || 'N/A' },
+        { label: 'Motor', value: getEngineInfo(car.fuel) },
+        { label: 'Potencia', value: getPowerInfo(car.type) },
+        { label: 'Rendimiento', value: getFuelEconomy(car.fuel) },
+        { label: 'Capacidad', value: getCapacity(car.type) }
+      ];
+    }
+
+    function getEngineInfo(fuel) {
+      const engines = {
+        'Gasolina': '2.0L 4 cilindros',
+        'Diésel': '2.0L 4 cilindros Turbo Diésel',
+        'Eléctrico': 'Motor eléctrico',
+        'Híbrido': '1.8L 4 cilindros + Motor eléctrico'
+      };
+      return engines[fuel] || '2.0L 4 cilindros';
+    }
+
+    function getPowerInfo(type) {
+      const power = {
+        'Sedán': '150-180 HP',
+        'SUV': '180-250 HP',
+        'Pickup': '200-300 HP',
+        'Coupé': '200-350 HP',
+        'Hatchback': '120-150 HP'
+      };
+      return power[type] || '150 HP';
+    }
+
+    function getFuelEconomy(fuel) {
+      const economy = {
+        'Gasolina': '12-15 km/l',
+        'Diésel': '18-22 km/l',
+        'Eléctrico': '400-500 km por carga',
+        'Híbrido': '20-25 km/l'
+      };
+      return economy[fuel] || '12-15 km/l';
+    }
+
+    function getCapacity(type) {
+      const capacity = {
+        'Sedán': '5 pasajeros',
+        'SUV': '7 pasajeros',
+        'Pickup': '5 pasajeros + carga',
+        'Coupé': '4 pasajeros',
+        'Hatchback': '5 pasajeros'
+      };
+      return capacity[type] || '5 pasajeros';
+    }
+
+    function calculateFinancing(price) {
+      const downPaymentPercent = 0.2;
+      const interestRate = 0.08;
+      const termMonths = 48;
+      
+      const downPayment = price * downPaymentPercent;
+      const loanAmount = price - downPayment;
+      const monthlyRate = interestRate / 12;
+      const monthly = (loanAmount * monthlyRate * Math.pow(1 + monthlyRate, termMonths)) / 
+                     (Math.pow(1 + monthlyRate, termMonths) - 1);
+
+      return {
+        monthly: Math.round(monthly).toLocaleString(),
+        downPayment: formatPrice(downPayment),
+        term: termMonths
+      };
+    }
+
+    // Funciones de acción (placeholder)
+    function requestQuote(carId) {
+      alert(`🚗 Cotización solicitada para el vehículo ${carId}\n\n¡Un asesor se contactará contigo pronto!`);
+    }
+
+    function addToFavorites(carId) {
+      alert(`❤️ Vehículo ${carId} agregado a favoritos\n\n¡Podrás verlo en tu lista de favoritos!`);
+    }
+
+    function shareVehicle(carId) {
+      if (navigator.share) {
+        navigator.share({
+          title: 'Mira este auto que encontré',
+          text: 'Te recomiendo este vehículo del sistema de recomendaciones',
+          url: window.location.href
+        });
+      } else {
+        // Fallback: copiar al portapapeles
+        navigator.clipboard.writeText(window.location.href).then(() => {
+          alert('🔗 Enlace copiado al portapapeles');
+        });
+      }
+    }
+
+    // Cerrar modal con Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeCarDetailsModal();
+      }
+    });
+
+    // Cerrar modal haciendo clic fuera
+    document.addEventListener('click', function(e) {
+      if (e.target && e.target.id === 'carDetailModal') {
+        closeCarDetailsModal();
+      }
+    });
   </script>
 </body>
 </html>
