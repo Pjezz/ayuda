@@ -62,7 +62,22 @@ function switchGroup(nextGroup) {
   document.getElementById('next-btn').disabled = true;
 }
 
-function saveSelections() {
-  localStorage.setItem('selectedBrands', JSON.stringify(selectedBrands));
-  window.location.href = 'budget.html';
+async function saveSelections() {
+  try {
+    const response = await fetch('/api/save-brands', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ brands: selectedBrands })
+    });
+    
+    if (response.ok) {
+      window.location.href = '/budget';
+    } else {
+      console.error('Error al guardar selecciones');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
 }

@@ -2,13 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const selectedTypes = new Set();
   const nextBtn = document.getElementById('next-btn');
 
-  // Validar que venga de fuel.html (cambiado de budget.html)
-  if (!localStorage.getItem('selectedFuel')) {
-    window.location.href = 'fuel.html';
-    return;
-  }
-
-  // Resto del código permanece igual...
+  // Configurar botones de tipo
   document.querySelectorAll('.type-btn').forEach(btn => {
     btn.addEventListener('click', function() {
       const type = this.dataset.type;
@@ -21,14 +15,31 @@ document.addEventListener('DOMContentLoaded', () => {
         selectedTypes.delete(type);
       }
       
+      // Habilitar/deshabilitar botón según selección
       nextBtn.disabled = selectedTypes.size === 0;
     });
   });
 
-  nextBtn.addEventListener('click', () => {
+  // Configurar botón siguiente
+  nextBtn.addEventListener('click', async () => {
     if (selectedTypes.size > 0) {
-      localStorage.setItem('selectedTypes', JSON.stringify(Array.from(selectedTypes)));
-      window.location.href = 'transmission.html';
+      try {
+        const response = await fetch('/api/save-types', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ types: Array.from(selectedTypes) })
+        });
+        
+        if (response.ok) {
+          window.location.href = '/transmission';
+        } else {
+          console.error('Error al guardar tipos');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
     }
   });
 });

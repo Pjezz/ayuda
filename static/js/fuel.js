@@ -2,12 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let selectedFuel = null;
   const nextBtn = document.getElementById('next-btn');
 
-  // Validar que venga de budget.html (cambiado de type.html)
-  if (!localStorage.getItem('selectedBudget')) {
-    window.location.href = 'budget.html';
-    return;
-  }
-
   // Configurar botones de combustible
   document.querySelectorAll('.fuel-btn').forEach(btn => {
     btn.addEventListener('click', function() {
@@ -28,10 +22,25 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Configurar botón siguiente
-  nextBtn.addEventListener('click', () => {
+  nextBtn.addEventListener('click', async () => {
     if (selectedFuel) {
-      localStorage.setItem('selectedFuel', selectedFuel);
-      window.location.href = 'type.html'; // Redirige a type.html ahora
+      try {
+        const response = await fetch('/api/save-fuel', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ fuel: selectedFuel })
+        });
+        
+        if (response.ok) {
+          window.location.href = '/type';
+        } else {
+          console.error('Error al guardar combustible');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
     }
   });
 });

@@ -2,12 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let selectedTransmission = null;
   const nextBtn = document.getElementById('next-btn');
 
-  // Validar que venga de types.html
-  if (!localStorage.getItem('selectedTypes')) {
-    window.location.href = 'types.html';
-    return;
-  }
-
   // Configurar botones de transmisión
   document.querySelectorAll('.transmission-btn').forEach(btn => {
     btn.addEventListener('click', function() {
@@ -28,10 +22,25 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Configurar botón siguiente
-  nextBtn.addEventListener('click', () => {
+  nextBtn.addEventListener('click', async () => {
     if (selectedTransmission) {
-      localStorage.setItem('selectedTransmission', selectedTransmission);
-      window.location.href = 'recommendations.html';
+      try {
+        const response = await fetch('/api/save-transmission', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ transmission: selectedTransmission })
+        });
+        
+        if (response.ok) {
+          window.location.href = '/recommendations';
+        } else {
+          console.error('Error al guardar transmisión');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
     }
   });
 });

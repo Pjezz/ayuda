@@ -3,32 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login con Carrusel</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css')}}">
+  <title>Recomendador de Autos - Login</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
 </head>
 <body>
   <!-- Carrusel como fondo -->
   <div class="carrusel-background">
     <div class="carrusel-imagenes">
-      <img src="static./images/Honda_01.jpg" alt="Imagen 1" class="active">
-      <img src="static./images/BMW_A.jpeg" alt="Imagen 2">
-      <img src="static./images/R.jpg" alt="Imagen 3">
-      <img src="static./images/mclaren.jpg" alt="Imagen 4">
-      <img src="static./images/Nissan.jpg" alt="Imagen 5">
-      <img src="static./images/RAWR.jpg" alt="Imagen 6">
-      <img src="static./images/AUDI.jpg" alt="Imagen 7">
-      <img src="static./images/OIP.jpg" alt="Imagen 8">
+      <img src="{{ url_for('static', filename='images/Honda_01.jpg') }}" alt="Honda" class="active" onerror="this.style.display='none'">
+      <img src="{{ url_for('static', filename='images/BMW_A.jpeg') }}" alt="BMW" onerror="this.style.display='none'">
+      <img src="{{ url_for('static', filename='images/R.jpg') }}" alt="Auto deportivo" onerror="this.style.display='none'">
+      <img src="{{ url_for('static', filename='images/mclaren.jpg') }}" alt="McLaren" onerror="this.style.display='none'">
+      <img src="{{ url_for('static', filename='images/Nissan.jpg') }}" alt="Nissan" onerror="this.style.display='none'">
+      <img src="{{ url_for('static', filename='images/RAWR.jpg') }}" alt="Auto de lujo" onerror="this.style.display='none'">
+      <img src="{{ url_for('static', filename='images/AUDI.jpg') }}" alt="Audi" onerror="this.style.display='none'">
+      <img src="{{ url_for('static', filename='images/OIP.jpg') }}" alt="Auto clásico" onerror="this.style.display='none'">
     </div>
   </div>
 
   <!-- Formulario de login -->
   <div class="login-container">
-    <h1>Iniciar Sesión</h1>
-    <input type="text" placeholder="Usuario" id="username">
-    <input type="password" placeholder="Contraseña" id="password">
-    <button id="login-button">Ingresar</button>
+    <div class="login-form">
+      <h1>Iniciar Sesión</h1>
+      <p class="subtitle">Encuentra el auto perfecto para ti</p>
+      
+      <form id="login-form">
+        <div class="input-group">
+          <input type="text" placeholder="Usuario" id="username" required>
+        </div>
+        <div class="input-group">
+          <input type="password" placeholder="Contraseña" id="password" required>
+        </div>
+        <button type="submit" id="login-button">Ingresar</button>
+      </form>
+      
+      <div id="error-message" class="error-message" style="display: none;"></div>
+    </div>
   </div>
 
-  <script rel="script" href="{{ url_for('static', filename='js/login.js')}}"></script>
+  <script src="{{ url_for('static', filename='js/login.js') }}"></script>
 </body>
 </html>

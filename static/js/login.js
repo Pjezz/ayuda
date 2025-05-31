@@ -15,28 +15,62 @@ document.addEventListener('DOMContentLoaded', () => {
     images[currentIndex].classList.add('active');
   }
 
-  // Inicia el carrusel automático
-  let carruselInterval = setInterval(nextImage, intervalTime);
+  // Inicia el carrusel automático si hay imágenes
+  let carruselInterval;
+  if (images.length > 0) {
+    carruselInterval = setInterval(nextImage, intervalTime);
+  }
 
   // Opcional: Pausar al interactuar con el formulario
   const loginForm = document.querySelector('.login-container');
-  loginForm.addEventListener('mouseenter', () => {
-    clearInterval(carruselInterval);
-  });
+  if (loginForm) {
+    loginForm.addEventListener('mouseenter', () => {
+      clearInterval(carruselInterval);
+    });
 
-  loginForm.addEventListener('mouseleave', () => {
-    carruselInterval = setInterval(nextImage, intervalTime);
-  });
+    loginForm.addEventListener('mouseleave', () => {
+      if (images.length > 0) {
+        carruselInterval = setInterval(nextImage, intervalTime);
+      }
+    });
+  }
 
-  // Lógica del login (se mantiene igual)
-  document.getElementById('login-button').addEventListener('click', (e) => {
-    e.preventDefault();
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+  // Lógica del login
+  const loginButton = document.getElementById('login-button');
+  if (loginButton) {
+    loginButton.addEventListener('click', async (e) => {
+      e.preventDefault();
+      
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
 
-    if (username && password) {
-    localStorage.setItem("isLoggedIn", "true");
-    window.location.href = "brands.html"; // ← Asegúrate de que coincida el nombre del archivo.
-}
-  });
+      if (username && password) {
+        try {
+          const response = await fetch('/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 
+              username: username, 
+              password: password 
+            })
+          });
+          
+          const data = await response.json();
+          
+          if (data.success) {
+            window.location.href = data.redirect;
+          } else {
+            alert(data.message || 'Error en el login');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          alert('Error de conexión');
+        }
+      } else {
+        alert('Por favor, ingresa usuario y contraseña');
+      }
+    });
+  }
 });

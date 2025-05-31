@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Selecciona el tipo de combustible</title>
-  <link rel="stylesheet" href="./css/fuel.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/fuel.css') }}">
 </head>
 <body>
   <div class="container">
@@ -13,18 +13,23 @@
     
     <div class="fuel-grid">
       <button class="fuel-btn" data-fuel="gasolina">
-        <img src="./images/gas-icon.png" alt="Gasolina">
+        <img src="{{ url_for('static', filename='images/gas-icon.png') }}" alt="Gasolina" onerror="this.style.display='none'">
         <span>Gasolina</span>
       </button>
       
       <button class="fuel-btn" data-fuel="diesel">
-        <img src="./images/diesel-icon.png" alt="Diésel">
+        <img src="{{ url_for('static', filename='images/diesel-icon.png') }}" alt="Diésel" onerror="this.style.display='none'">
         <span>Diésel</span>
       </button>
       
       <button class="fuel-btn" data-fuel="electrico">
-        <img src="./images/electric-icon.png" alt="Eléctrico">
+        <img src="{{ url_for('static', filename='images/electric-icon.png') }}" alt="Eléctrico" onerror="this.style.display='none'">
         <span>Eléctrico</span>
+      </button>
+      
+      <button class="fuel-btn" data-fuel="hibrido">
+        <img src="{{ url_for('static', filename='images/hybrid-icon.png') }}" alt="Híbrido" onerror="this.style.display='none'">
+        <span>Híbrido</span>
       </button>
     </div>
     
@@ -33,6 +38,6 @@
     </div>
   </div>
 
-  <script src="./js/fuel.js"></script>
+  <script src="{{ url_for('static', filename='js/fuel.js') }}"></script>
 </body>
 </html>

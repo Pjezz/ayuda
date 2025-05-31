@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Selecciona tus tipos de vehículo</title>
-  <link rel="stylesheet" href="./css/type.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/type.css') }}">
 </head>
 <body>
   <div class="container">
@@ -13,32 +13,32 @@
     
     <div class="types-grid">
       <button class="type-btn" data-type="sedan">
-        <img src="./images/sedan-icon.png" alt="Sedán">
+        <img src="{{ url_for('static', filename='images/sedan-icon.png') }}" alt="Sedán" onerror="this.style.display='none'">
         <span>Sedán</span>
       </button>
       
       <button class="type-btn" data-type="suv">
-        <img src="./images/suv-icon.png" alt="SUV">
+        <img src="{{ url_for('static', filename='images/suv-icon.png') }}" alt="SUV" onerror="this.style.display='none'">
         <span>SUV</span>
       </button>
       
       <button class="type-btn" data-type="hatchback">
-        <img src="./images/hatchback-icon.png" alt="Hatchback">
+        <img src="{{ url_for('static', filename='images/hatchback-icon.png') }}" alt="Hatchback" onerror="this.style.display='none'">
         <span>Hatchback</span>
       </button>
       
       <button class="type-btn" data-type="pickup">
-        <img src="./images/pickup-icon.png" alt="Pickup">
+        <img src="{{ url_for('static', filename='images/pickup-icon.png') }}" alt="Pickup" onerror="this.style.display='none'">
         <span>Pickup</span>
       </button>
       
       <button class="type-btn" data-type="coupe">
-        <img src="./images/coupe-icon.png" alt="Coupé">
+        <img src="{{ url_for('static', filename='images/coupe-icon.png') }}" alt="Coupé" onerror="this.style.display='none'">
         <span>Coupé</span>
       </button>
       
       <button class="type-btn" data-type="convertible">
-        <img src="./images/convertible-icon.png" alt="Convertible">
+        <img src="{{ url_for('static', filename='images/convertible-icon.png') }}" alt="Convertible" onerror="this.style.display='none'">
         <span>Convertible</span>
       </button>
     </div>
@@ -48,6 +48,6 @@
     </div>
   </div>
 
-  <script src="./js/type.js"></script>
+  <script src="{{ url_for('static', filename='js/type.js') }}"></script>
 </body>
 </html>
