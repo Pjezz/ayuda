@@ -25,7 +25,7 @@
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       padding: 2rem;
       width: 100%;
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
     }
 
@@ -45,6 +45,18 @@
     .subtitle {
       color: #666;
       font-size: 1.1rem;
+    }
+
+    /* ===== DEBUG INFO ===== */
+    .debug-info {
+      background-color: #e7f3ff;
+      border: 1px solid #b3d9ff;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 2rem;
+      font-family: monospace;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
     }
 
     /* ===== LOADING ===== */
@@ -79,18 +91,85 @@
       padding: 20px;
       border-radius: 12px;
       margin: 20px 0;
-      text-align: center;
+      text-align: left;
       border: 1px solid #f5c6cb;
+    }
+
+    .error-message h3 {
+      margin-bottom: 1rem;
+      color: #721c24;
+    }
+
+    .error-message ul {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+    }
+
+    .error-message li {
+      margin: 0.5rem 0;
     }
 
     .error-container {
       margin-bottom: 2rem;
     }
 
+    /* ===== SUMMARY SECTION ===== */
+    .summary-section {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border-left: 4px solid #6200ea;
+    }
+
+    .summary-section h3 {
+      color: #333;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .summary-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .stat {
+      text-align: center;
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .stat-number {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #6200ea;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .summary-details {
+      margin-top: 1rem;
+    }
+
+    .summary-details p {
+      margin: 0.5rem 0;
+      color: #555;
+    }
+
     /* ===== GRID DE RECOMENDACIONES ===== */
     .recommendations-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
       gap: 1.5rem;
       margin-bottom: 2rem;
     }
@@ -161,11 +240,16 @@
     }
 
     /* ===== INFORMACIÓN DEL AUTO ===== */
+    .car-info {
+      position: relative;
+    }
+
     .car-name {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       font-weight: bold;
       margin-bottom: 0.3rem;
       color: #333;
+      line-height: 1.2;
     }
 
     .car-brand {
@@ -186,6 +270,29 @@
       background: rgba(39, 174, 96, 0.1);
       border-radius: 6px;
       text-align: center;
+    }
+
+    /* ===== PUNTUACIÓN DE SIMILITUD ===== */
+    .similarity-score {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(98, 0, 234, 0.1);
+      padding: 0.5rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+    }
+
+    .score-label {
+      font-size: 0.9rem;
+      color: #6200ea;
+      font-weight: 500;
+    }
+
+    .score-value {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #6200ea;
     }
 
     /* ===== DETALLES DEL AUTO ===== */
@@ -240,6 +347,11 @@
       left: 0;
       color: #27ae60;
       font-weight: bold;
+    }
+
+    .more-features {
+      font-style: italic;
+      color: #999 !important;
     }
 
     /* ===== BOTONES DE ACCIÓN ===== */
@@ -311,17 +423,6 @@
       font-size: 1.5rem;
     }
 
-    /* ===== DEBUG INFO ===== */
-    .debug-info {
-      background-color: #e7f3ff;
-      border: 1px solid #b3d9ff;
-      border-radius: 8px;
-      padding: 1rem;
-      margin-bottom: 2rem;
-      font-family: monospace;
-      font-size: 0.9rem;
-    }
-
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
       .container {
@@ -351,6 +452,10 @@
       header h1 {
         font-size: 1.8rem;
       }
+
+      .summary-stats {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 480px) {
@@ -363,11 +468,11 @@
       }
       
       .car-name {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
       }
       
       .car-price {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
       }
       
       header h1 {
@@ -389,11 +494,27 @@
 
     .car-card {
       animation: fadeInUp 0.6s ease forwards;
+      opacity: 0;
     }
 
-    .car-card:nth-child(2) { animation-delay: 0.1s; }
-    .car-card:nth-child(3) { animation-delay: 0.2s; }
-    .car-card:nth-child(4) { animation-delay: 0.3s; }
+    /* ===== PRINT STYLES ===== */
+    @media print {
+      .debug-info,
+      .action-buttons {
+        display: none !important;
+      }
+      
+      .container {
+        box-shadow: none;
+        border-radius: 0;
+      }
+      
+      .car-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+      }
+    }
   </style>
 </head>
 <body>
@@ -413,156 +534,281 @@
 
     <!-- Loading indicator -->
     <div id="loading" class="loading" style="display: block;">
-      Cargando tus recomendaciones
+      Cargando tus recomendaciones...
     </div>
 
     <!-- Error container -->
     <div id="error-container" class="error-container" style="display: none;">
     </div>
 
+    <!-- Summary section -->
+    <div id="summary-section" class="summary-section" style="display: none;">
+      <h3>📊 Resumen de tu búsqueda</h3>
+      <div id="summary-content"></div>
+    </div>
+
     <!-- Recommendations container -->
-    <div id="recommendations-container" class="recommendations-container">
+    <div id="recommendations-container" class="recommendations-container" style="display: none;">
+    </div>
+
+    <!-- Action buttons -->
+    <div class="action-buttons" id="action-buttons" style="display: none;">
+      <button onclick="restartProcess()" class="restart-btn">🔄 Empezar de Nuevo</button>
+      <button onclick="window.print()" class="print-btn">🖨️ Imprimir</button>
+      <button onclick="loadRecommendations()" class="retry-btn">🔁 Reintentar</button>
     </div>
   </div>
 
   <script>
-    // Marcar JavaScript como cargado
-    document.getElementById('js-status').textContent = '✓ Cargado';
+    // Variables globales
+    let debugMode = false;
 
-    document.addEventListener('DOMContentLoaded', async () => {
+    // Función para formatear precio
+    function formatPrice(price) {
+      if (typeof price === 'number') {
+        return `$${price.toLocaleString('es-GT')}`;
+      }
+      return price || 'Precio no disponible';
+    }
+
+    // Función para crear una tarjeta de auto
+    function createCarCard(car, index) {
+      const card = document.createElement('div');
+      card.className = 'car-card';
+      
+      // Agregar delay de animación basado en el índice
+      card.style.animationDelay = `${index * 0.1}s`;
+      
+      const imageHtml = car.image ? 
+        `<div class="car-image"><img src="${car.image}" alt="${car.name}"></div>` :
+        `<div class="car-image"><div class="no-image">📷 Imagen no disponible</div></div>`;
+      
+      const featuresHtml = car.features && Array.isArray(car.features) && car.features.length > 0 ? 
+        `<div class="car-features">
+           <h4>Características destacadas:</h4>
+           <ul>
+             ${car.features.slice(0, 5).map(feature => `<li>${feature}</li>`).join('')}
+             ${car.features.length > 5 ? `<li class="more-features">+${car.features.length - 5} más características</li>` : ''}
+           </ul>
+         </div>` : '';
+      
+      // Mostrar puntuación de similitud si está disponible
+      const scoreHtml = car.similarity_score ? 
+        `<div class="similarity-score">
+           <span class="score-label">Compatibilidad:</span>
+           <span class="score-value">${Math.round(car.similarity_score)}%</span>
+         </div>` : '';
+      
+      card.innerHTML = `
+        ${imageHtml}
+        <div class="car-info">
+          <div class="car-name">${car.name || 'Nombre no disponible'}</div>
+          <div class="car-brand">${car.brand || 'Marca no disponible'}</div>
+          <div class="car-price">${formatPrice(car.price)}</div>
+          ${scoreHtml}
+          <div class="car-details">
+            <div class="detail"><strong>Tipo:</strong> ${car.type || 'No especificado'}</div>
+            <div class="detail"><strong>Combustible:</strong> ${car.fuel || 'No especificado'}</div>
+            <div class="detail"><strong>Transmisión:</strong> ${car.transmission || 'No especificado'}</div>
+            <div class="detail"><strong>Año:</strong> ${car.year || 'No especificado'}</div>
+          </div>
+          ${featuresHtml}
+        </div>
+      `;
+      
+      return card;
+    }
+
+    // Función para mostrar las recomendaciones
+    function displayRecommendations(recommendations) {
+      const container = document.getElementById('recommendations-container');
+      const summarySection = document.getElementById('summary-section');
+      const summaryContent = document.getElementById('summary-content');
+      
+      if (!Array.isArray(recommendations) || recommendations.length === 0) {
+        container.innerHTML = `
+          <div class="no-recommendations">
+            <h3>No se encontraron recomendaciones</h3>
+            <p>Lo sentimos, no pudimos encontrar autos que coincidan con tus preferencias.</p>
+            <p>Intenta modificar tus criterios de búsqueda.</p>
+          </div>
+        `;
+        return;
+      }
+      
+      const grid = document.createElement('div');
+      grid.className = 'recommendations-grid';
+      
+      // Mostrar hasta 10 recomendaciones
+      const displayCount = Math.min(recommendations.length, 10);
+      
+      recommendations.slice(0, displayCount).forEach((car, index) => {
+        const card = createCarCard(car, index);
+        grid.appendChild(card);
+      });
+      
+      container.innerHTML = '';
+      container.appendChild(grid);
+      
+      // Mostrar resumen de la búsqueda
+      if (summaryContent) {
+        const priceRange = recommendations.length > 0 ? {
+          min: Math.min(...recommendations.map(c => c.price)),
+          max: Math.max(...recommendations.map(c => c.price))
+        } : { min: 0, max: 0 };
+        
+        const brands = [...new Set(recommendations.map(c => c.brand))];
+        const types = [...new Set(recommendations.map(c => c.type))];
+        
+        summaryContent.innerHTML = `
+          <div class="summary-stats">
+            <div class="stat">
+              <span class="stat-number">${displayCount}</span>
+              <span class="stat-label">recomendaciones encontradas</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">${brands.length}</span>
+              <span class="stat-label">marcas diferentes</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">$${priceRange.min.toLocaleString()} - $${priceRange.max.toLocaleString()}</span>
+              <span class="stat-label">rango de precios</span>
+            </div>
+          </div>
+          <div class="summary-details">
+            <p><strong>Marcas encontradas:</strong> ${brands.join(', ')}</p>
+            <p><strong>Tipos disponibles:</strong> ${types.join(', ')}</p>
+          </div>
+        `;
+        
+        summarySection.style.display = 'block';
+      }
+    }
+
+    // Función para mostrar errores
+    function showError(errorMessage, details = null) {
+      const errorContainer = document.getElementById('error-container');
+      const loadingElement = document.getElementById('loading');
+      
+      if (loadingElement) {
+        loadingElement.style.display = 'none';
+      }
+      
+      let errorHtml = `
+        <div class="error-message">
+          <h3>❌ Error al cargar las recomendaciones</h3>
+          <p><strong>Mensaje:</strong> ${errorMessage}</p>
+      `;
+      
+      if (details) {
+        errorHtml += `
+          <p><strong>Posibles soluciones:</strong></p>
+          <ul>
+            <li>Verifica que hayas completado todos los pasos anteriores</li>
+            <li>Intenta recargar la página</li>
+            <li>Si el problema persiste, reinicia el proceso</li>
+          </ul>
+        `;
+      }
+      
+      errorHtml += `</div>`;
+      
+      errorContainer.innerHTML = errorHtml;
+      errorContainer.style.display = 'block';
+    }
+
+    // Función para cargar las recomendaciones
+    async function loadRecommendations() {
       const loadingElement = document.getElementById('loading');
       const recommendationsContainer = document.getElementById('recommendations-container');
       const errorContainer = document.getElementById('error-container');
-      const apiStatus = document.getElementById('api-status');
-
+      const actionButtons = document.getElementById('action-buttons');
+      const summarySection = document.getElementById('summary-section');
+      
       try {
-        // Mostrar loading
-        if (loadingElement) {
-          loadingElement.style.display = 'block';
-        }
+        // Mostrar loading y ocultar otros elementos
+        if (loadingElement) loadingElement.style.display = 'block';
+        if (recommendationsContainer) recommendationsContainer.style.display = 'none';
+        if (errorContainer) errorContainer.style.display = 'none';
+        if (actionButtons) actionButtons.style.display = 'none';
+        if (summarySection) summarySection.style.display = 'none';
 
         // Obtener recomendaciones del servidor
         console.log('Intentando conectar con /api/recommendations...');
-        apiStatus.textContent = '⏳ Conectando...';
+        const apiStatus = document.getElementById('api-status');
+        if (apiStatus) {
+          apiStatus.textContent = '⏳ Conectando...';
+        }
         
         const response = await fetch('/api/recommendations');
         
         console.log('Respuesta recibida:', response.status, response.statusText);
         
         if (!response.ok) {
-          apiStatus.textContent = `❌ Error ${response.status}`;
-          throw new Error(`Error al obtener recomendaciones: ${response.status} ${response.statusText}`);
+          if (apiStatus) {
+            apiStatus.textContent = `❌ Error ${response.status}`;
+          }
+          
+          // Intentar obtener el mensaje de error del servidor
+          let errorMessage = `Error ${response.status}: ${response.statusText}`;
+          let errorDetails = null;
+          
+          try {
+            const errorData = await response.json();
+            errorMessage = errorData.error || errorMessage;
+            errorDetails = errorData;
+          } catch (e) {
+            console.log('No se pudo parsear el error JSON');
+          }
+          
+          showError(errorMessage, errorDetails);
+          return;
         }
         
         const recommendations = await response.json();
         console.log('Recomendaciones recibidas:', recommendations);
         
-        apiStatus.textContent = '✓ Conectado';
-        
-        // Ocultar loading
-        if (loadingElement) {
-          loadingElement.style.display = 'none';
+        if (apiStatus) {
+          apiStatus.textContent = '✓ Conectado';
         }
         
-        // Mostrar recomendaciones
+        // Ocultar loading y mostrar recomendaciones
+        if (loadingElement) loadingElement.style.display = 'none';
+        if (recommendationsContainer) recommendationsContainer.style.display = 'block';
+        if (actionButtons) actionButtons.style.display = 'flex';
+        
+        // Verificar que las recomendaciones sean válidas
+        if (!Array.isArray(recommendations)) {
+          console.error('Las recomendaciones no son un array:', recommendations);
+          showError('Formato de datos inválido recibido del servidor');
+          return;
+        }
+        
+        // Mostrar las recomendaciones
         displayRecommendations(recommendations);
         
       } catch (error) {
-        console.error('Error completo:', error);
-        apiStatus.textContent = '❌ Error de conexión';
+        console.error('Error cargando recomendaciones:', error);
         
-        // Ocultar loading
-        if (loadingElement) {
-          loadingElement.style.display = 'none';
+        const apiStatus = document.getElementById('api-status');
+        if (apiStatus) {
+          apiStatus.textContent = '❌ Error de conexión';
         }
         
-        // Mostrar error detallado
-        if (errorContainer) {
-          errorContainer.style.display = 'block';
-          errorContainer.innerHTML = `
-            <div class="error-message">
-              <h3>Error al cargar recomendaciones</h3>
-              <p><strong>Mensaje:</strong> ${error.message}</p>
-              <p><strong>Posibles causas:</strong></p>
-              <ul style="text-align: left; margin: 1rem 0;">
-                <li>La ruta /api/recommendations no existe en tu servidor Flask</li>
-                <li>El servidor Flask no está ejecutándose</li>
-                <li>Problema de CORS (Cross-Origin Resource Sharing)</li>
-                <li>La función que genera las recomendaciones tiene un error</li>
-              </ul>
-              <button onclick="window.location.reload()" class="retry-btn">
-                Intentar de nuevo
-              </button>
-              <button onclick="testWithMockData()" class="restart-btn" style="margin-left: 10px;">
-                Probar con datos de ejemplo
-              </button>
-            </div>
-          `;
-        }
+        showError(`Error de conexión: ${error.message}`, {
+          suggestion: 'Verifica que el servidor esté funcionando correctamente'
+        });
+        
+        // Mostrar botones de acción para que el usuario pueda reintentar
+        if (actionButtons) actionButtons.style.display = 'flex';
       }
-    });
+    }
 
-    function displayRecommendations(recommendations) {
-      const container = document.getElementById('recommendations-container');
-      
-      if (!container || !recommendations || recommendations.length === 0) {
-        container.innerHTML = `
-          <div class="no-recommendations">
-            <h3>No se encontraron recomendaciones</h3>
-            <p>Intenta ajustar tus criterios de búsqueda.</p>
-            <button onclick="window.location.href='/')" class="restart-btn">
-              Empezar de nuevo
-            </button>
-          </div>
-        `;
-        return;
+    // Función para reiniciar el proceso
+    function restartProcess() {
+      if (confirm('¿Estás seguro de que quieres reiniciar el proceso? Se perderán todas tus selecciones.')) {
+        window.location.href = '/brands';
       }
-
-      let html = '<div class="recommendations-grid">';
-      
-      recommendations.forEach(car => {
-        html += `
-          <div class="car-card">
-            <div class="car-image">
-              ${car.image ? `<img src="${car.image}" alt="${car.name}">` : '<div class="no-image">Sin imagen</div>'}
-            </div>
-            <div class="car-info">
-              <h3 class="car-name">${car.name || 'Nombre no disponible'}</h3>
-              <p class="car-brand">${car.brand || 'Marca no disponible'}</p>
-              <p class="car-price">$${car.price?.toLocaleString() || 'Precio no disponible'}</p>
-              <div class="car-details">
-                <span class="detail"><strong>Tipo:</strong> ${car.type || 'No especificado'}</span>
-                <span class="detail"><strong>Combustible:</strong> ${car.fuel || 'No especificado'}</span>
-                <span class="detail"><strong>Transmisión:</strong> ${car.transmission || 'No especificado'}</span>
-              </div>
-              ${car.features && car.features.length > 0 ? `
-                <div class="car-features">
-                  <h4>Características:</h4>
-                  <ul>
-                    ${car.features.map(feature => `<li>${feature}</li>`).join('')}
-                  </ul>
-                </div>
-              ` : ''}
-            </div>
-          </div>
-        `;
-      });
-      
-      html += '</div>';
-      
-      // Agregar botones de acción
-      html += `
-        <div class="action-buttons">
-          <button onclick="window.location.href='/'" class="restart-btn">
-            Empezar de nuevo
-          </button>
-          <button onclick="window.print()" class="print-btn">
-            Imprimir recomendaciones
-          </button>
-        </div>
-      `;
-      
-      container.innerHTML = html;
     }
 
     // Función para probar con datos de ejemplo
@@ -575,7 +821,8 @@
           type: "Sedán",
           fuel: "Gasolina",
           transmission: "Automática",
-          features: ["Aire acondicionado", "Sistema de sonido", "Cámara trasera"]
+          features: ["Aire acondicionado", "Sistema de sonido", "Cámara trasera"],
+          similarity_score: 85.0
         },
         {
           name: "Honda Civic 2024",
@@ -584,7 +831,8 @@
           type: "Sedán",
           fuel: "Gasolina",
           transmission: "Manual",
-          features: ["Pantalla táctil", "Sensores de estacionamiento", "Control crucero"]
+          features: ["Pantalla táctil", "Sensores de estacionamiento", "Control crucero"],
+          similarity_score: 80.0
         }
       ];
       
@@ -594,6 +842,23 @@
       
       displayRecommendations(mockRecommendations);
     }
+
+    // Función principal que se ejecuta cuando carga la página
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Marcar JavaScript como cargado
+      const jsStatus = document.getElementById('js-status');
+      if (jsStatus) {
+        jsStatus.textContent = '✓ Cargado';
+      }
+
+      // Cargar las recomendaciones automáticamente
+      await loadRecommendations();
+    });
+
+    // Hacer las funciones disponibles globalmente para los botones
+    window.loadRecommendations = loadRecommendations;
+    window.restartProcess = restartProcess;
+    window.testWithMockData = testWithMockData;
   </script>
 </body>
 </html>
